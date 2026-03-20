@@ -1,0 +1,131 @@
+/*
+ * GS Tables – Frontend Stylesheet v1.9p
+ * Key strategy: .gs-table-wrap handles all outer borders/radius.
+ * The table itself is borderless to avoid Chrome's border-collapse
+ * + overflow:hidden bottom-border clipping bug.
+ */
+
+/* ── Wrapper — scroll container AND border/radius host ───────── */
+.gs-table-wrap {
+    display: block !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 1.5em 0;
+    border: var(--gst-bw, 1px) solid var(--gst-border, #cccccc) !important;
+    border-radius: var(--gst-br, 4px);
+    overflow: hidden;
+    padding: 0 !important;
+    /* Subtle scroll hint on mobile */
+    background:
+        linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+        linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
+        radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.1), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.1), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+}
+
+/* ── Table ───────────────────────────────────────────────────── */
+.gs-table {
+    width: 100% !important;
+    min-width: max-content !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    font-size: var(--gst-fs, 14px);
+    line-height: 1.5;
+    border: none !important;
+    border-radius: 0;
+    overflow: visible;
+    display: table !important;
+}
+
+/* Caption */
+.gs-table caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 0.95em;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0.4em;
+    padding: 0 0 0.3em 0;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.gs-table thead {
+    display: table-header-group !important;
+}
+
+.gs-table thead tr {
+    display: table-row !important;
+}
+
+.gs-table thead th {
+    display:          table-cell !important;
+    padding:          var(--gst-pad, 10px) !important;
+    text-align:       left !important;
+    font-weight:      600;
+    white-space:      nowrap;
+    border:           none !important;
+    border-left:      var(--gst-bw, 1px) solid rgba(255,255,255,0.2) !important;
+    background-color: var(--gst-header-bg, #4a6fa5);
+    color:            var(--gst-header-fg, #ffffff);
+}
+
+.gs-table thead th:first-child {
+    border-left: none !important;
+}
+
+.gs-table thead th:not([style]) {
+    background-color: var(--gst-header-bg, #4a6fa5) !important;
+    color:            var(--gst-header-fg, #ffffff) !important;
+}
+
+.gs-table thead th[style] {
+    background-color: var(--gst-header-bg, #4a6fa5);
+    color:            var(--gst-header-fg, #ffffff);
+}
+
+/* ── Body ────────────────────────────────────────────────────── */
+.gs-table tbody {
+    display: table-row-group !important;
+}
+
+.gs-table tbody tr {
+    display: table-row !important;
+}
+
+.gs-table tbody td {
+    display:        table-cell !important;
+    padding:        var(--gst-pad, 10px) !important;
+    border:         none !important;
+    border-top:     var(--gst-bw, 1px) solid var(--gst-border, #cccccc) !important;
+    border-left:    var(--gst-bw, 1px) solid var(--gst-border, #cccccc) !important;
+    vertical-align: top;
+    text-align:     left !important;
+    white-space:    normal;
+}
+
+.gs-table tbody td:first-child {
+    border-left: none !important;
+}
+
+/* Striped rows */
+.gs-table tbody tr:nth-child(even) td {
+    background-color: var(--gst-stripe, #f0f4f8) !important;
+}
+
+/* Hover highlight */
+.gs-table tbody tr:hover td {
+    filter: brightness(0.96);
+}
+
+/* ── Print ───────────────────────────────────────────────────── */
+@media print {
+    .gs-table-wrap  { overflow: visible; background: none; border: 1px solid #ccc; }
+    .gs-table       { font-size: 11pt; min-width: 0 !important; }
+    .gs-table tbody tr:hover td { filter: none; }
+}
